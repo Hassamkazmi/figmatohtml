@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Message</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Style for the select element */
+        select {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            appearance: none;
+            /* Removes default styling in some browsers */
+        }
+
+        /* Style for the dropdown options */
+        select option {
+            background-color: rgb(80, 79, 79);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container quiz-css" id="step1">
+        <div class="">
+            <div class="logo signup section">
+                <div class="section-header">
+                    <img src="./Assets/1.png" alt="Logo">
+                    <span>
+                        <h2>ipropaganda</h2>
+                        <p>IDFY | MUSIC</p>
+                    </span>
+                </div>
+                <div class="volume-control-header">
+                    <img src="./Assets/Frame 4.png" alt="" />
+                    <input type="range" id="volume" name="volume" min="0" max="100" value="50">
+                    <img src="./Assets/Frame 3.png" alt="" />
+                </div>
+            </div>
+            <hr />
+            <div class="heading-main Disqualification">
+                <div class="image-flex">
+                    <img class="song-play" src="./Assets/Play@2x.png" alt="" />
+                    <img class="song-notes" src="./Assets/Song notes.png" alt="" />
+                </div>
+                <div class="form-container">
+                    <form class="song-form">
+                        <label for="song-name">Song Name</label>
+                        <input type="text" id="song-name" placeholder="Enter song name here...">
+
+                        <label for="artist-name">Artist Name</label>
+                        <input type="text" id="artist-name" placeholder="Enter artist name here...">
+
+                        <label for="release-year">Year of Release</label>
+                        <select id="release-year">
+                            <option>Choose year of release from here</option>
+                        </select>
+
+                        <label for="genre">Genre of Song</label>
+                        <select id="genre">
+                            <option>Choose genre from here</option>
+                        </select>
+
+                        <button type="submit" disabled>Submit</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Populate Year of Release dropdown with last 10 years
+        const currentYear = new Date().getFullYear();
+        const yearDropdown = document.getElementById('release-year');
+        for (let i = 0; i < 10; i++) {
+            const yearOption = document.createElement('option');
+            yearOption.value = currentYear - i;
+            yearOption.text = currentYear - i;
+            yearDropdown.appendChild(yearOption);
+        }
+
+        // Populate Genre of Song dropdown with options
+        const genreDropdown = document.getElementById('genre');
+        const genres = ["Art Music", "Popular Music"];
+        genres.forEach(genre => {
+            const genreOption = document.createElement('option');
+            genreOption.value = genre;
+            genreOption.text = genre;
+            genreDropdown.appendChild(genreOption);
+        });
+    </script>
+
+</body>
+
+</html>

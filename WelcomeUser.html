@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo signup">
+            <img src="./Assets/1.png" alt="Logo">
+            <span>
+                <h2>ipropaganda</h2>
+                <p>IDFY | MUSIC</p>
+            </span>
+        </div>
+        <hr />
+        <div class="heading-main new">
+            <h1>Welcome Back!</h1>
+            <p>Hassam</p>
+        </div>
+        <div id="lottie-container"></div>
+        <div class="">
+            <p>
+                Please wait while we are fetching your data
+            </p>
+        </div>
+    </div>
+
+    <script>
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-container'), // the DOM element that will contain the animation
+            renderer: 'svg', // 'svg'/'canvas'/'html' to set the rendering mode
+            loop: true, // loop the animation
+            autoplay: true, // play the animation on load
+            path: 'https://lottie.host/e7102ad6-bb72-457a-be12-9df3fc72ac11/6ykWMFuffs.json' // the path to the animation JSON
+        });
+    </script>
+</body>
+
+</html>

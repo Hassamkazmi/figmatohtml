@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Message</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="container" id="step1">
+        <!-- Content for Step 1 -->
+        <div class="">
+            <div class="logo signup">
+                <img src="./Assets/1.png" alt="Logo">
+                <span>
+                    <h2>ipropaganda</h2>
+                    <p>IDFY | MUSIC</p>
+                </span>
+            </div>
+            <hr />
+            <div class="heading-main Disqualification">
+                <h1>An Important Message!</h1>
+                <p>Our app works best with the following settings. <br /> Please make sure to adjust everything you start the
+                    quiz.</p>
+            </div>
+            <div class="Disqualification-paragraph icon">
+                <span>
+                    <img src="./Assets/Frame 1.png" alt="" />
+                    <p>
+                        Use Headphones For Better Experience</p>
+
+                </span>
+                <span>
+                    <img src="./Assets/Frame 2.png" alt="" />
+                    <p>
+
+                        Use Volume Buttons to Adjust Volume </p>
+
+                </span>
+                <span class="center-span">
+                    <p>
+                        You Can Adjust Your Volume Below As Well</p>
+
+                </span>
+
+                <div class="volume-control">
+                    <img src="./Assets/Frame 4.png" alt="" /> <input type="range" id="volume" name="volume" min="0"
+                        max="100" value="50">
+                    <img src="./Assets/Frame 3.png" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="btn-main">
+            <button class="btn register" onclick="nextStep(2)">Next</button>
+
+        </div>
+    </div>
+    <div class="container" id="step2" style="display:none">
+        <!-- Content for Step 2 -->
+        <div class="">
+            <div class="logo signup section">
+                <div class="section-header">
+                    <img src="./Assets/1.png" alt="Logo">
+                    <span>
+                        <h2>ipropaganda</h2>
+                        <p>IDFY | MUSIC</p>
+                    </span>
+                </div>
+                <div class="volume-control-header">
+                    <img src="./Assets/Frame 4.png" alt="" /> <input type="range" id="volume" name="volume" min="0"
+                        max="100" value="50">
+                    <img src="./Assets/Frame 3.png" alt="" />
+                </div>
+            </div>
+            <hr />
+            <div class="heading-main Disqualification">
+                <div class="image-flex">
+                    <img class="song-play" src="./Assets/Play@2x.png" alt="" />
+                    <img class="song-notes" src="./Assets/Song notes.png" alt="" />
+                </div>
+                <h1>Listen to Songs</h1>
+                <p>listen to the 5s song snippet by pressing the play button above.</p>
+                <p>You must identify:</p>
+                <div class="identity">
+                    <span>Song name</span>|<span>Artist name</span>|<span>Year of release</span>|<span>Genre</span>
+                </div>
+                <p>You only get to hear the audio 5 times.</p>
+            </div>
+
+        </div>
+        <div class="btn-main">
+            <button class="btn register" onclick="nextStep(3)">Next</button>
+
+        </div>
+    </div>
+    <div class="container" id="step3" style="display:none">
+        <!-- Content for Step 3 -->
+        <div class="">
+            <div class="logo signup">
+                <img src="./Assets/1.png" alt="Logo">
+                <span>
+                    <h2>ipropaganda</h2>
+                    <p>IDFY | MUSIC</p>
+                </span>
+            </div>
+            <hr />
+            <div class="heading-main Disqualification">
+                <h1>Exiting Game Condition</h1>
+                <p>If you exit the game, the song to identify will change.</p>
+
+                <div class="line"></div>
+
+                <p>If you exit the game 5 times you’re disqualified and you’ll have to wait for the next round...   </p>
+                <div class="line"></div>
+
+                <p>Whether you win or lose, make sure you’ve subscribed to our newsletter; this way you’ll be the first
+                    to know when our next rounds are.</p>
+                <span class="checkbox-css">
+                    <input type="checkbox" checked>
+                    <p>I understand the conditions</p>
+                </span>
+            </div>
+
+
+        </div>
+        <div class="btn-main">
+            <button class="btn register" onclick="nextStep(4)">Continue to quiz</button>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

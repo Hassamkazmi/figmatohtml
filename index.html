@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function redirectRegister() {
+            window.location.href = 'Googlesignup.html'; // Redirect to googleindex.html
+        }
+
+        function redirectLogin() {
+            window.location.href = 'Googlesignin.html'; // Redirect to googleindex.html
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./Assets/1.png" alt="Logo">
+            <h2>ipropaganda</h2>
+            <p><span>IDFY</span> | MUSIC</p>
+        </div>
+        <hr />
+        <div class="heading-main">
+            <h1>Welcome!</h1>
+            <p>To continue, please sign up or sign in</p>
+        </div>
+        <div class="btn-main">
+            <button class="btn register" onclick="redirectRegister()">Register Now</button>
+            <button class="btn signin" onclick="redirectLogin()">Sign In</button>
+        </div>
+    </div>
+</body>
+
+</html>

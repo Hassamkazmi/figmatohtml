@@ -1,0 +1,433 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("./Assets/Background.png") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  width: 500px;
+  padding: 35px;
+  background: rgb(14 14 14 / 80%);
+  border-radius: 22px;
+  text-align: center;
+  color: white;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 150px;
+  margin-bottom: -15px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.heading-main {
+  padding: 15px;
+}
+.btn-main {
+  width: 50%;
+  margin: auto;
+  padding-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button.btn.signin {
+  background: #dae99d;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 17px 24px 17px 24px;
+}
+button.btn.register {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 17px 24px 17px 24px;
+}
+.logo > p > span {
+  font-weight: 600;
+}
+
+.logo > p {
+  font-weight: 400;
+  line-height: 0px;
+  padding-bottom: 12px;
+  font-size: 25px;
+}
+.logo > h2 {
+  font-size: 35px;
+  line-height: 20px;
+}
+.heading-main > h1 {
+  font-size: 30px;
+  line-height: 10px;
+  font-weight: 300;
+}
+
+.logo.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 35px;
+}
+.logo.signup span h2 {
+  font-size: 35px !important;
+  line-height: 1px;
+}
+
+.logo.signup span p {
+  font-size: 25px !important;
+  line-height: 1px;
+}
+.logo.signup span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.facebook-btn {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0px 10px -1px -2px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.facebook-btn i {
+  color: #074271;
+  margin-right: 10px;
+  font-size: 30px;
+  padding: 9px 5px 9px 5px;
+}
+
+svg.google-btn {
+  color: #074271;
+  margin-right: 10px;
+  padding: 5px 9px 5px 9px;
+  height: 35px;
+  width: 30px;
+}
+.googles-btn {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0px 10px -1px -2px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 10px 2px 1px;
+}
+a.hyerlink-email {
+  color: #fff;
+}
+.login-form {
+  font-family: Arial, sans-serif;
+  width: 350px;
+  background: transparent;
+  padding: 20px;
+  margin: auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 15px;
+  text-align: justify;
+  color: #fff;
+}
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* space for eye icon */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 16px;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #575555;
+}
+
+button.submitform {
+  width: 100%;
+  background-color: #dae99d;
+  color: #000;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.forgot-password {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.password-toggle:hover {
+  color: #666;
+}
+i.fa-solid.fa-eye-slash.password-toggle {
+  margin: -5px 0px 0px 0px;
+}
+
+span.checkbox-css {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin-top: -10px;
+}
+
+span.checkbox-css p {
+  padding: 8px 4px 2px 8px;
+}
+div#lottie-container {
+  height: 80px;
+}
+.heading-main.new > h1 {
+  font-size: 16px;
+  line-height: 10px;
+  font-weight: 300;
+  color: #dae99d;
+}
+.heading-main.new p {
+  font-size: 22px !important;
+  margin-bottom: 20px;
+}
+.Disqualification-paragraph {
+  width: 80%;
+  margin: auto;
+}
+.volume-control {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  justify-content: space-around;
+  width: 100% !important;
+}
+.volume-control i {
+  margin: 0 10px;
+}
+.Disqualification-paragraph span {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Disqualification-paragraph span img {
+  width: 40px;
+  height: 40px;
+}
+
+.Disqualification-paragraph span p {
+  padding: 0px 15px;
+}
+
+.Disqualification-paragraph.icon {
+  width: 70%;
+  margin: auto;
+}
+
+.Disqualification-paragraph span.center-span {
+  display: flex;
+  justify-content: center;
+}
+.volume-control-header {
+  display: flex;
+}
+
+.volume-control-header img {
+  height: 30px;
+  width: 30px;
+}
+.section-header {
+  display: flex;
+}
+.section-header img {
+  width: 80px;
+  height: 80px;
+}
+.logo.signup.section span p {
+  font-size: 16px !important;
+  line-height: 1px;
+}
+.logo.signup.section span h2 {
+  font-size: 23px !important;
+  line-height: 1px;
+}
+.logo.signup.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.identity {
+  border: 1px solid #fff;
+  border-radius: 15px;
+  padding: 20px 0px;
+}
+
+.identity p {
+  margin: 0;
+}
+
+.identity span {
+  padding: 0 15px;
+  font-weight: lighter;
+}
+img.song-play {
+  width: 55px;
+}
+
+.image-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 60%; */
+  margin: auto;
+  padding: 0px 0px 22px 0px;
+}
+
+img.song-notes {
+  width: 80%;
+}
+.line {
+  height: 1px;
+  background-color: #fff;
+  width: 35%;
+  margin: 20px 0;
+  margin: auto;
+}
+span.checkbox-css {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin-top: -10px;
+  justify-content: center;
+}
+.heading-main.Disqualification p {
+  font-size: 12px;
+}
+.form-container {
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Blur effect for background */
+}
+
+.song-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+input,
+select {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Slightly transparent input background */
+  color: #fff;
+}
+
+input::placeholder {
+  color: #fff !important;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 16px;
+  cursor: not-allowed; /* Disabled button look */
+}
+
+button:disabled {
+  background: rgba(255, 255, 255, 0.1);
+}
+.container.quiz-css {
+  margin-top: 15vw;
+}
