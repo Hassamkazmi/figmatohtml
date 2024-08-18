@@ -16,7 +16,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             appearance: none;
-            /* Removes default styling in some browsers */
         }
 
         /* Style for the dropdown options */
@@ -48,7 +47,7 @@
             <hr />
             <div class="heading-main Disqualification">
                 <div class="image-flex">
-                    <img class="song-play" src="./Assets/Play@2x.png" alt="" />
+                    <img class="song-play" src="./Assets/Play@2x.png" alt="" id="play-button"/>
                     <img class="song-notes" src="./Assets/Song notes.png" alt="" />
                 </div>
                 <div class="form-container">
@@ -78,6 +77,9 @@
         </div>
 
     </div>
+
+    <!-- Add an audio element to play the song -->
+    <audio id="audio-player" src="./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"></audio>
 
     <script>
         // Populate Year of Release dropdown with last 10 years
@@ -126,6 +128,14 @@
         artistNameInput.addEventListener('input', checkFormValidity);
         releaseYearSelect.addEventListener('change', checkFormValidity);
         genreSelect.addEventListener('change', checkFormValidity);
+
+        // Play song when play button is clicked
+        const playButton = document.getElementById('play-button');
+        const audioPlayer = document.getElementById('audio-player');
+
+        playButton.addEventListener('click', () => {
+            audioPlayer.play();
+        });
     </script>
 
 </body>

@@ -4,9 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Welcome Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+    <script>
+        window.onload = function() {
+            // Retrieve the user data from local storage
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+
+            // Display the user's name in the <p> tag
+            if (storedUser && storedUser.username) {
+                document.getElementById('username').innerText = storedUser.username;
+            } else {
+                document.getElementById('username').innerText = 'Guest'; // Default text if no username found
+            }
+        };
+    </script>
 </head>
 
 <body>
@@ -21,7 +34,7 @@
         <hr />
         <div class="heading-main new">
             <h1>Welcome Back!</h1>
-            <p>Hassam</p>
+            <p id="username">Hassam</p> <!-- This will be replaced with the actual username -->
         </div>
         <div id="lottie-container"></div>
         <div class="">
@@ -38,10 +51,10 @@
             path: 'https://lottie.host/e7102ad6-bb72-457a-be12-9df3fc72ac11/6ykWMFuffs.json' // the path to the animation JSON
         });
 
-        // Redirect to important-message.html after 3 seconds
+        // Redirect to important-message.html after 4 seconds
         setTimeout(function () {
             window.location.href = 'important-message.html';
-        }, 4000); // 3000 milliseconds = 3 seconds
+        }, 4000); // 4000 milliseconds = 4 seconds
     </script>
 </body>
 
