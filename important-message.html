@@ -23,41 +23,33 @@
             <hr />
             <div class="heading-main Disqualification">
                 <h1>An Important Message!</h1>
-                <p>Our app works best with the following settings. <br /> Please make sure to adjust everything you start the
-                    quiz.</p>
+                <p>Our app works best with the following settings. <br /> Please make sure to adjust everything before
+                    you start the quiz.</p>
             </div>
             <div class="Disqualification-paragraph icon">
                 <span>
                     <img src="./Assets/Frame 1.png" alt="" />
-                    <p>
-                        Use Headphones For Better Experience</p>
-
+                    <p>Use Headphones For Better Experience</p>
                 </span>
                 <span>
                     <img src="./Assets/Frame 2.png" alt="" />
-                    <p>
-
-                        Use Volume Buttons to Adjust Volume </p>
-
+                    <p>Use Volume Buttons to Adjust Volume</p>
                 </span>
                 <span class="center-span">
-                    <p>
-                        You Can Adjust Your Volume Below As Well</p>
-
+                    <p>You Can Adjust Your Volume Below As Well</p>
                 </span>
-
                 <div class="volume-control">
-                    <img src="./Assets/Frame 4.png" alt="" /> <input type="range" id="volume" name="volume" min="0"
-                        max="100" value="50">
+                    <img src="./Assets/Frame 4.png" alt="" />
+                    <input type="range" id="volume" name="volume" min="0" max="100" value="50">
                     <img src="./Assets/Frame 3.png" alt="" />
                 </div>
             </div>
         </div>
         <div class="btn-main">
             <button class="btn register" onclick="nextStep(2)">Next</button>
-
         </div>
     </div>
+
     <div class="container" id="step2" style="display:none">
         <!-- Content for Step 2 -->
         <div class="">
@@ -70,8 +62,8 @@
                     </span>
                 </div>
                 <div class="volume-control-header">
-                    <img src="./Assets/Frame 4.png" alt="" /> <input type="range" id="volume" name="volume" min="0"
-                        max="100" value="50">
+                    <img src="./Assets/Frame 4.png" alt="" />
+                    <input type="range" id="volume" name="volume" min="0" max="100" value="50">
                     <img src="./Assets/Frame 3.png" alt="" />
                 </div>
             </div>
@@ -82,20 +74,19 @@
                     <img class="song-notes" src="./Assets/Song notes.png" alt="" />
                 </div>
                 <h1>Listen to Songs</h1>
-                <p>listen to the 5s song snippet by pressing the play button above.</p>
+                <p>Listen to the 5s song snippet by pressing the play button above.</p>
                 <p>You must identify:</p>
                 <div class="identity">
                     <span>Song name</span>|<span>Artist name</span>|<span>Year of release</span>|<span>Genre</span>
                 </div>
                 <p>You only get to hear the audio 5 times.</p>
             </div>
-
         </div>
         <div class="btn-main">
             <button class="btn register" onclick="nextStep(3)">Next</button>
-
         </div>
     </div>
+
     <div class="container" id="step3" style="display:none">
         <!-- Content for Step 3 -->
         <div class="">
@@ -110,12 +101,9 @@
             <div class="heading-main Disqualification">
                 <h1>Exiting Game Condition</h1>
                 <p>If you exit the game, the song to identify will change.</p>
-
                 <div class="line"></div>
-
-                <p>If you exit the game 5 times you’re disqualified and you’ll have to wait for the next round...   </p>
+                <p>If you exit the game 5 times you’re disqualified and you’ll have to wait for the next round...</p>
                 <div class="line"></div>
-
                 <p>Whether you win or lose, make sure you’ve subscribed to our newsletter; this way you’ll be the first
                     to know when our next rounds are.</p>
                 <span class="checkbox-css">
@@ -123,15 +111,28 @@
                     <p>I understand the conditions</p>
                 </span>
             </div>
-
-
         </div>
         <div class="btn-main">
             <button class="btn register" onclick="nextStep(4)">Continue to quiz</button>
-
-
         </div>
     </div>
+
+    <script>
+        function nextStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+
+            // Show the current step
+            if (step < 4) {
+                document.getElementById(`step${step}`).style.display = 'block';
+            } else {
+                // Redirect to Quizflow.html
+                window.location.href = 'Quizflow.html';
+            }
+        }
+    </script>
 </body>
 
 </html>

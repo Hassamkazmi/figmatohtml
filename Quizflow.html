@@ -61,15 +61,15 @@
 
                         <label for="release-year">Year of Release</label>
                         <select id="release-year">
-                            <option>Choose year of release from here</option>
+                            <option value="">Choose year of release from here</option>
                         </select>
 
                         <label for="genre">Genre of Song</label>
                         <select id="genre">
-                            <option>Choose genre from here</option>
+                            <option value="">Choose genre from here</option>
                         </select>
 
-                        <button type="submit" disabled>Submit</button>
+                        <button type="submit" id="submit-button" disabled>Submit</button>
                     </form>
                 </div>
 
@@ -99,6 +99,33 @@
             genreOption.text = genre;
             genreDropdown.appendChild(genreOption);
         });
+
+        // Get form elements
+        const songNameInput = document.getElementById('song-name');
+        const artistNameInput = document.getElementById('artist-name');
+        const releaseYearSelect = document.getElementById('release-year');
+        const genreSelect = document.getElementById('genre');
+        const submitButton = document.getElementById('submit-button');
+
+        // Function to check if all fields have data
+        function checkFormValidity() {
+            if (
+                songNameInput.value.trim() !== '' &&
+                artistNameInput.value.trim() !== '' &&
+                releaseYearSelect.value !== '' &&
+                genreSelect.value !== ''
+            ) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+
+        // Add event listeners to form inputs and select elements
+        songNameInput.addEventListener('input', checkFormValidity);
+        artistNameInput.addEventListener('input', checkFormValidity);
+        releaseYearSelect.addEventListener('change', checkFormValidity);
+        genreSelect.addEventListener('change', checkFormValidity);
     </script>
 
 </body>

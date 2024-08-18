@@ -7,8 +7,6 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
-
-
 </head>
 
 <body>
@@ -27,9 +25,7 @@
         </div>
         <div id="lottie-container"></div>
         <div class="">
-            <p>
-                Please wait while we are fetching your data
-            </p>
+            <p>Please wait while we are fetching your data</p>
         </div>
     </div>
 
@@ -41,6 +37,11 @@
             autoplay: true, // play the animation on load
             path: 'https://lottie.host/e7102ad6-bb72-457a-be12-9df3fc72ac11/6ykWMFuffs.json' // the path to the animation JSON
         });
+
+        // Redirect to important-message.html after 3 seconds
+        setTimeout(function () {
+            window.location.href = 'important-message.html';
+        }, 4000); // 3000 milliseconds = 3 seconds
     </script>
 </body>
 

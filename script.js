@@ -1,13 +1,3 @@
-function nextStep(stepNumber) {
-  // Hide all steps
-  for (let i = 1; i <= 3; i++) {
-    document.getElementById("step" + i).style.display = "none";
-  }
-
-  // Show the current step
-  document.getElementById("step" + stepNumber).style.display = "block";
-}
-
 function togglePasswordVisibility() {
   var passwordInput = document.getElementById("password");
   var toggleIcon = document.querySelector(".password-toggle");
