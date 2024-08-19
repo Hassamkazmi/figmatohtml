@@ -414,7 +414,12 @@ select {
 input::placeholder {
   color: #fff !important;
 }
-
+span.checkbox-css input {
+  margin-bottom: 2px !important;
+}
+.container.signup-top {
+  margin-top: 20%;
+}
 button {
   padding: 10px;
   border: none;
