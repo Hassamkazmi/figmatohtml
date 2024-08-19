@@ -436,3 +436,14 @@ button:disabled {
 .container.quiz-css {
   margin-top: 15vw;
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+  text-align: start;
+}
+
+.invalid {
+  border-color: red;
+}

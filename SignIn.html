@@ -25,6 +25,23 @@
                 alert('Invalid email or password');
             }
         }
+
+        function validateEmail() {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const emailValue = emailInput.value;
+
+            // Simple email regex for validation
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!emailPattern.test(emailValue)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailInput.classList.add('invalid');
+            } else {
+                emailError.textContent = '';
+                emailInput.classList.remove('invalid');
+            }
+        }
     </script>
 </head>
 
@@ -43,7 +60,9 @@
             <div class="login-form">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" placeholder="Enter your email...">
+                    <input type="text" id="email" placeholder="Enter your email..." oninput="validateEmail()">
+                    <span id="email-error" class="error-message"></span>
+
                 </div>
                 <div class="form-group password-group">
                     <label for="password">Password</label>
@@ -54,7 +73,7 @@
                 <button type="submit" class="submitform" onclick="loginUser()">Sign In</button>
             </div>
             <div class="">
-                <a class="hyerlink-email" href="">Forgot Password?</a>
+                <a class="hyerlink-email" href="./Forget.html">Forgot Password?</a>
             </div>
         </div>
     </div>
