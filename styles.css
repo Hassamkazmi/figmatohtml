@@ -447,3 +447,14 @@ button:disabled {
 .invalid {
   border-color: red;
 }
+
+.new-css-res {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.new-css-res h3 {
+  background: rgb(163, 82, 82);
+  padding: 6px 10px;
+  border-radius: 10px;
+}
