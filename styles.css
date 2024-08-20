@@ -239,6 +239,9 @@ button.submitform {
 i.fa-solid.fa-eye-slash.password-toggle {
   margin: -5px 0px 0px 0px;
 }
+i.fa-solid.password-toggle.fa-eye {
+  margin: -5px 0px 0px 0px;
+}
 
 span.checkbox-css {
   display: flex;
@@ -457,4 +460,15 @@ button:disabled {
   background: rgb(163, 82, 82);
   padding: 6px 10px;
   border-radius: 10px;
+}
+.new-css-res h3 {
+  position: absolute;
+  right: 30%;
+  top: 35%;
+  background: #d46d6d !important;
+  border-radius: 5px;
+}
+.heading-main.Disqualification {
+  width: 70%;
+  margin: auto;
 }
