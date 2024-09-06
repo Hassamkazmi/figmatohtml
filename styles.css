@@ -475,3 +475,82 @@ button:disabled {
   width: 70%;
   margin: auto;
 }
+/* Tablet (iPad) Styles */
+@media (max-width: 1024px) {
+  .login-box {
+    max-width: 400px;
+    padding: 15px;
+  }
+
+  .social-button {
+    padding-left: 15%;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .login-box {
+    max-width: 320px;
+    margin: 20vh auto;
+    padding: 10px;
+  }
+
+  .social-button {
+    padding-left: 10%;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+  .container {
+    width: 300px;
+    padding: 30px;
+    background: rgb(14 14 14 / 80%);
+    border-radius: 22px;
+    text-align: center;
+    color: white;
+  }
+  .btn-main {
+    width: 85%;
+    margin: auto;
+    padding-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .logo img {
+    width: 100px;
+    margin-bottom: 0px;
+  }
+
+  .logo.signup span h2 {
+    font-size: 30px !important;
+    line-height: 1px;
+  }
+  .logo.signup span p {
+    font-size: 20px !important;
+    line-height: 1px;
+  }
+  .login-form {
+    font-family: Arial, sans-serif;
+    width: 260px;
+    background: transparent;
+    padding: 0px;
+    margin: auto;
+  }
+  .Disqualification-paragraph.icon {
+    width: 90%;
+    margin: auto;
+}
+
+.heading-main.Disqualification {
+  width: 90%;
+  margin: auto;
+}
+.heading-main > h1 {
+  font-size: 18px;
+  line-height: 5px;
+  font-weight: 300;
+}
+}
