@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <style>
-        /* Style for the select element */
         select {
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
@@ -18,7 +17,6 @@
             appearance: none;
         }
 
-        /* Style for the dropdown options */
         select option {
             background-color: rgb(80, 79, 79);
             color: white;
@@ -48,13 +46,9 @@
             <div class="heading-main Disqualification">
                 <div class="image-flex">
                     <div class="new-css-res">
-                        <!-- <div></div> -->
-                        <!-- <img class="song-play" src="./Assets/Play@2x.png" alt="" id="play-button" /> -->
-                        <h3>5 try left</h3>
-
+                        <h3>5 tries left</h3>
                     </div>
                     <img class="song-play" src="./Assets/Play@2x.png" alt="" id="play-button" />
-
                     <img class="song-notes" src="./Assets/Song notes.png" alt="" />
                 </div>
                 <div class="form-container">
@@ -75,7 +69,7 @@
                             <option value="">Choose genre from here</option>
                         </select>
 
-                        <button type="submit" id="submit-button" disabled>Submit</button>
+                        <button type="submit" id="submit-button" >Submit</button>
                     </form>
                 </div>
 
@@ -86,22 +80,57 @@
     </div>
 
     <!-- Add an audio element to play the song -->
-    <audio id="audio-player" src="./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"></audio>
+    <audio id="audio-player"></audio>
 
     <script>
+        const songs = [
+            {
+                "Song Name": "Block Party",
+                "Artist Name": "Anthony White",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"
+            },
+            {
+                "Song Name": "Cocomotion",
+                "Artist Name": "El Coco",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"
+            },
+            {
+                "Song Name": "It's Ecstasy When You Lay Down Next to Me",
+                "Artist Name": "Barry White",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"
+            }
+            // Add more songs here
+        ];
+
+        let currentSong = null;
+
+
         // Populate Year of Release dropdown with last 10 years
         const currentYear = new Date().getFullYear();
+        // Populate Year of Release dropdown with specific years
         const yearDropdown = document.getElementById('release-year');
-        for (let i = 0; i < 10; i++) {
+
+        // Array of specific years to add
+        const years = [1977, 1978, 1987, 1988];
+
+        // Loop through the array and add each year to the dropdown
+        years.forEach(year => {
             const yearOption = document.createElement('option');
-            yearOption.value = currentYear - i;
-            yearOption.text = currentYear - i;
+            yearOption.value = year;
+            yearOption.text = year;
             yearDropdown.appendChild(yearOption);
-        }
+        });
+
 
         // Populate Genre of Song dropdown with options
         const genreDropdown = document.getElementById('genre');
-        const genres = ["Art Music", "Popular Music"];
+        const genres = ["Disco", "Pop", "Rock", "Jazz"]; // You can add more genres here
         genres.forEach(genre => {
             const genreOption = document.createElement('option');
             genreOption.value = genre;
@@ -136,14 +165,39 @@
         releaseYearSelect.addEventListener('change', checkFormValidity);
         genreSelect.addEventListener('change', checkFormValidity);
 
-        // Play song when play button is clicked
+        // Play a random song when the play button is clicked
         const playButton = document.getElementById('play-button');
         const audioPlayer = document.getElementById('audio-player');
 
         playButton.addEventListener('click', () => {
+            // Pick a random song from the JSON data
+            currentSong = songs[Math.floor(Math.random() * songs.length)];
+
+            // Set the audio source to the randomly selected song's file path
+            audioPlayer.src = currentSong['File Path'];
             audioPlayer.play();
         });
+
+        // Check if the user's input matches the current song's details
+        const form = document.querySelector('.song-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from submitting
+
+            const isCorrect = (
+                songNameInput.value.trim().toLowerCase() === currentSong['Song Name'].toLowerCase() &&
+                artistNameInput.value.trim().toLowerCase() === currentSong['Artist Name'].toLowerCase() &&
+                releaseYearSelect.value == currentSong['Year of Release'] &&
+                genreSelect.value === currentSong['Genre']
+            );
+
+            if (isCorrect) {
+                alert('Success! You guessed the correct song details.');
+            } else {
+                alert('Incorrect. Please try again.');
+            }
+        });
     </script>
+
 
 </body>
 

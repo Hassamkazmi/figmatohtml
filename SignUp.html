@@ -58,22 +58,51 @@
     </div>
 
     <script>
+
         function registerUser() {
             const email = document.getElementById('email').value;
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
 
             if (email && username && password) {
                 const user = {
                     email: email,
-                    username: username,
+                    name: username,
                     password: password
                 };
-                // Store the user data in local storage
-                localStorage.setItem('user', JSON.stringify(user));
 
-                // Redirect to the welcome page
-                window.location.href = 'SignIn.html';
+                // API endpoint for sign-up
+                const apiEndpoint = 'https://danbackend-64ik.vercel.app/api/v1/register';
+
+                // Send a POST request to the sign-up API
+                fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)  // Send user data as JSON
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Successful registration: redirect to the sign-in page
+                            window.location.href = 'SignIn.html';
+                        } else {
+                            // Handle registration errors
+                            alert(data.message || 'Failed to register. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error during registration:', error);
+                        alert('An error occurred during registration. Please try again.');
+                    });
             } else {
                 alert('Please fill in all fields');
             }
