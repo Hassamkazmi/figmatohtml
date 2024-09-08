@@ -9,21 +9,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
 
     <script>
-        let totalScore = 0; // Declare totalScore here so it is accessible globally
-
         window.onload = function () {
+            // Get the totalScore from the URL query params
             const urlParams = new URLSearchParams(window.location.search);
-            totalScore = parseInt(urlParams.get('totalScore')) || 0; // Set the value of totalScore
+            const totalScore = parseInt(urlParams.get('totalScore')) || 0;
+
+            // Set the score in the #total-score span
+            const totalScoreElement = document.getElementById('total-score');
+            totalScoreElement.textContent = totalScore;  // Update the span with the totalScore
 
             const songPlayImg = document.querySelector('.song-play');
             const heading = document.querySelector('.Disqualification h1');
             const answers = document.querySelector('.color-css-answer');
-            const totalScoreElement = document.getElementById('total-score'); // Get the total-score element
-
-            // Update the totalScore in the button
-            if (totalScoreElement) {
-                totalScoreElement.textContent = totalScore;
-            }
 
             // Logic based on totalScore
             if (totalScore === 0) {
@@ -46,8 +43,7 @@
         };
 
         function nextStep() {
-            // Now totalScore is accessible here since it is declared globally
-            window.location.href = `PointAdded.html?totalScore=${totalScore}`;
+            window.location.href = `ExitPage.html`;
         }
     </script>
 </head>
@@ -72,11 +68,10 @@
         <div class="heading-main new">
             <img class="song-play" src="./Assets/Group 1.png" alt="" />
             <div class="Disqualification">
-                <h1>Better Luck Next Time!</h1>
-                <p class="answerscss">Your <span class="color-css-answer">0 of 5 answers</span> were correct</p>
-                <p class="answerscss">Try next time</p>
+                <h1>Points Added</h1>
+                <p class="answerscss"><span id="total-score"></span> points are added to your total, you now have 1,000
+                    points to spend</p>
             </div>
-            <button type="submit" class="submitform point"><span id="total-score"></span> points</button>
             <div class="btn-main">
                 <button class="btn register" onclick="nextStep()">Continue</button>
             </div>

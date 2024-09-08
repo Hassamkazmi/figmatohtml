@@ -254,19 +254,21 @@
                 genreSelect.value === currentSong['Genre']
             );
 
-            console.log(triesLeft)
-            console.log(isCorrect)
-            console.log(totalScore)
-
             if (isCorrect) {
                 alert('Success! You guessed the correct song details.');
                 totalScore += 25; // Add 25 points for correct answer
+                triesLeft--;
+                if (triesLeft === 0) {
+                    alert('Game Over!');
+                    window.location.href = `ResultCard.html?totalScore=${totalScore}`;
+
+                }
             } else {
                 alert('Incorrect. Please try again.');
                 triesLeft--; // Decrease tries by 1
                 if (triesLeft === 0) {
                     alert('Game Over!');
-                    window.location.href = 'ResultCard.html';
+                    window.location.href = `ResultCard.html?totalScore=${totalScore}`;
 
                 }
             }

@@ -454,8 +454,11 @@ button:disabled {
   opacity: 0.5; /* Optional: To visually indicate the disabled state */
 }
 .heading-main.new p.answerscss {
-  font-size: 14px !important;
+  font-size: 16px !important;
   margin-top: 20px;
+}
+span.color-css-answer {
+  color: #dae99d;
 }
 .invalid {
   border-color: red;
