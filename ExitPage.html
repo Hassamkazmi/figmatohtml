@@ -7,7 +7,12 @@
     <title>Welcome Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
-
+    <script>
+        function nextStep() {
+            // Now totalScore is accessible here since it is declared globally
+            window.location.href = `index.html`;
+        }
+    </script>
 </head>
 
 <body>
@@ -37,7 +42,7 @@
                 <p>Exit the app to save your progress and sign out.</p>
             </div>
             <div class="btn-main">
-                <button class="btn register">Exit</button>
+                <button class="btn register" onclick="nextStep()">Exit</button>
             </div>
         </div>
     </div>
