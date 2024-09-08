@@ -1,0 +1,57 @@
+<!-- Welcome Page -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+   
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo signup section">
+            <div class="section-header">
+                <img src="./Assets/1.png" alt="Logo">
+                <span>
+                    <h2>ipropaganda</h2>
+                    <p>IDFY | MUSIC</p>
+                </span>
+            </div>
+            <div class="volume-control-header">
+                <img src="./Assets/Frame 4.png" alt="" />
+                <input type="range" id="volume" name="volume" min="0" max="100" value="50">
+                <img src="./Assets/Frame 3.png" alt="" />
+            </div>
+        </div>
+        <hr />
+        <div class="heading-main new">
+            <img class="song-play" src="./Assets/heart2.png" alt="" />
+            <div class="Disqualification">
+                <h1>Thank you! </h1>
+                <p class="answerscss">Please wait while we are reviewing the answers</p>
+            </div>
+        </div>
+        <div id="lottie-container"></div>
+
+    </div>
+
+    <script>
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-container'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/e7102ad6-bb72-457a-be12-9df3fc72ac11/6ykWMFuffs.json'
+        });
+
+        setTimeout(function () {
+            window.location.href = 'important-message.html';
+        }, 4000);
+    </script>
+</body>
+
+</html>

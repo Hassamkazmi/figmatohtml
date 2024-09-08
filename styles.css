@@ -433,7 +433,7 @@ button {
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
   font-size: 16px;
-  cursor: not-allowed; /* Disabled button look */
+  cursor: pointer;
 }
 
 button:disabled {
@@ -449,11 +449,21 @@ button:disabled {
   display: block;
   text-align: start;
 }
-
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5; /* Optional: To visually indicate the disabled state */
+}
+.heading-main.new p.answerscss {
+  font-size: 14px !important;
+  margin-top: 20px;
+}
 .invalid {
   border-color: red;
 }
-
+button.submitform.point {
+  width: 25%;
+  margin-bottom: 5rem;
+}
 .new-css-res {
   width: 100%;
   display: flex;
@@ -542,15 +552,15 @@ button:disabled {
   .Disqualification-paragraph.icon {
     width: 90%;
     margin: auto;
-}
+  }
 
-.heading-main.Disqualification {
-  width: 90%;
-  margin: auto;
-}
-.heading-main > h1 {
-  font-size: 18px;
-  line-height: 5px;
-  font-weight: 300;
-}
+  .heading-main.Disqualification {
+    width: 90%;
+    margin: auto;
+  }
+  .heading-main > h1 {
+    font-size: 18px;
+    line-height: 5px;
+    font-weight: 300;
+  }
 }

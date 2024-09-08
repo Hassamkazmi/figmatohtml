@@ -46,7 +46,7 @@
             <div class="heading-main Disqualification">
                 <div class="image-flex">
                     <div class="new-css-res">
-                        <h3>5 tries left</h3>
+                        <h3 id="tries-left">5 try left</h3> <!-- Updated ID for tracking tries -->
                     </div>
                     <img class="song-play" src="./Assets/Play@2x.png" alt="" id="play-button" />
                     <img class="song-notes" src="./Assets/Song notes.png" alt="" />
@@ -69,7 +69,7 @@
                             <option value="">Choose genre from here</option>
                         </select>
 
-                        <button type="submit" id="submit-button" >Submit</button>
+                        <button type="submit" id="submit-button">Submit</button>
                     </form>
                 </div>
 
@@ -89,7 +89,7 @@
                 "Artist Name": "Anthony White",
                 "Year of Release": 1977,
                 "Genre": "Disco",
-                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Block Party.mp3"
             },
             {
                 "Song Name": "Cocomotion",
@@ -103,30 +103,73 @@
                 "Artist Name": "Barry White",
                 "Year of Release": 1977,
                 "Genre": "Disco",
-                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Cocomotion.mp3"
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/It's Ecstasy When You Lay Down Next to Me.mp3"
             }
-            // Add more songs here
+            ,
+            {
+                "Song Name": "I Got to Have Your Love",
+                "Artist Name": "Fantastic Four",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/I Got to Have Your Love.mp3"
+            },
+            {
+                "Song Name": "San Francisco",
+                "Artist Name": "Village People",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/San Francisco.mp3"
+            },
+            {
+                "Song Name": "Misunderstood",
+                "Artist Name": "Santa Esmeralda",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Misunderstood.mp3"
+            },
+            {
+                "Song Name": "Native New Yorker",
+                "Artist Name": "Odyssey",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Native New Yorker.mp3"
+            },
+            {
+                "Song Name": "Dance, Dance, Dance",
+                "Artist Name": "Chic",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Dance Dance Dance.mp3"
+            },
+            {
+                "Song Name": "Cosmic Wind",
+                "Artist Name": "Mike Theodore Orchestra",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Mike Theo orchestra.mp3"
+            },
+            {
+                "Song Name": "Girl Don't Make Me Wait",
+                "Artist Name": "Pattie Brooks",
+                "Year of Release": 1977,
+                "Genre": "Disco",
+                "File Path": "./Assets/Music snippets_ 1st 10 to developer/Girl Don't Make Me Wait.mp3"
+            }
         ];
 
         let currentSong = null;
+        let triesLeft = 5; // Initialize tries left to 5
+        let totalScore = 0; // Initialize the total score (125 total, 25 per correct answer)
 
-
-        // Populate Year of Release dropdown with last 10 years
-        const currentYear = new Date().getFullYear();
         // Populate Year of Release dropdown with specific years
         const yearDropdown = document.getElementById('release-year');
-
-        // Array of specific years to add
         const years = [1977, 1978, 1987, 1988];
-
-        // Loop through the array and add each year to the dropdown
         years.forEach(year => {
             const yearOption = document.createElement('option');
             yearOption.value = year;
             yearOption.text = year;
             yearDropdown.appendChild(yearOption);
         });
-
 
         // Populate Genre of Song dropdown with options
         const genreDropdown = document.getElementById('genre');
@@ -144,6 +187,23 @@
         const releaseYearSelect = document.getElementById('release-year');
         const genreSelect = document.getElementById('genre');
         const submitButton = document.getElementById('submit-button');
+        const triesLeftDisplay = document.getElementById('tries-left');
+        const playButton = document.getElementById('play-button');
+        const audioPlayer = document.getElementById('audio-player');
+
+        let isPlaying = false; // Flag to track the play state
+
+        // Function to play a random song
+        function playRandomSong() {
+            currentSong = songs[Math.floor(Math.random() * songs.length)];
+            audioPlayer.src = currentSong['File Path'];
+            audioPlayer.play();
+            playButton.src = './Assets/Vector.png'; // Change to pause button
+            isPlaying = true;
+        }
+
+        // Initially disable the submit button
+        submitButton.disabled = true;
 
         // Function to check if all fields have data
         function checkFormValidity() {
@@ -166,19 +226,23 @@
         genreSelect.addEventListener('change', checkFormValidity);
 
         // Play a random song when the play button is clicked
-        const playButton = document.getElementById('play-button');
-        const audioPlayer = document.getElementById('audio-player');
-
         playButton.addEventListener('click', () => {
-            // Pick a random song from the JSON data
-            currentSong = songs[Math.floor(Math.random() * songs.length)];
-
-            // Set the audio source to the randomly selected song's file path
-            audioPlayer.src = currentSong['File Path'];
-            audioPlayer.play();
+            if (isPlaying) {
+                audioPlayer.pause();
+                playButton.src = './Assets/Play@2x.png';
+                isPlaying = false;
+            } else {
+                playRandomSong();
+            }
         });
 
-        // Check if the user's input matches the current song's details
+        // Reset the button to Play@2x.png when the song ends
+        audioPlayer.addEventListener('ended', () => {
+            playButton.src = './Assets/Play@2x.png';
+            isPlaying = false;
+        });
+
+        // Form submit handler
         const form = document.querySelector('.song-form');
         form.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent form from submitting
@@ -190,14 +254,40 @@
                 genreSelect.value === currentSong['Genre']
             );
 
+            console.log(triesLeft)
+            console.log(isCorrect)
+            console.log(totalScore)
+
             if (isCorrect) {
                 alert('Success! You guessed the correct song details.');
+                totalScore += 25; // Add 25 points for correct answer
             } else {
                 alert('Incorrect. Please try again.');
+                triesLeft--; // Decrease tries by 1
+                if (triesLeft === 0) {
+                    alert('Game Over!');
+                    window.location.href = 'ResultCard.html';
+
+                }
             }
+
+            // Update the "tries left" display
+            triesLeftDisplay.textContent = `${triesLeft} tries left`;
+
+            // Check if the user has completed 4 correct answers
+            if (totalScore >= 100) {
+                localStorage.setItem('totalScore', totalScore); // Save score to localStorage
+                window.location.href = 'results.html'; // Redirect to results page
+            }
+
+            // Play a new song after submission
+            playRandomSong();
+
+            // Reset form fields
+            form.reset();
+            checkFormValidity(); // Disable submit button again
         });
     </script>
-
 
 </body>
 
