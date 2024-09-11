@@ -67,7 +67,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Successful login: Redirect to the welcome page
+                        localStorage.setItem('authToken', data.token);
                         window.location.href = 'WelcomeUser.html';
                     } else {
                         // Handle invalid login
