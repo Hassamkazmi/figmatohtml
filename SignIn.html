@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -47,6 +49,15 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
+            if (!email || !password) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Incomplete Information',
+                    text: 'Please fill in both email and password fields.'
+                });
+                return;
+            }
+
             // API endpoint for sign-in
             const apiEndpoint = 'https://danbackend-64ik.vercel.app/api/v1/login';
 
@@ -68,18 +79,33 @@
                 .then(data => {
                     if (data.success) {
                         localStorage.setItem('authToken', data.token);
-                        window.location.href = 'WelcomeUser.html';
+
+                        // Show success alert
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Login Successful!',
+                            text: 'You will be redirected to your dashboard.'
+                        }).then(() => {
+                            window.location.href = 'WelcomeUser.html';  // Redirect after alert confirmation
+                        });
                     } else {
-                        // Handle invalid login
-                        alert(data.message || 'Invalid email or password');
+                        // Handle invalid login with SweetAlert
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed',
+                            text: data.message || 'Invalid email or password. Please try again.'
+                        });
                     }
                 })
                 .catch(error => {
                     console.error('Error during login:', error);
-                    alert('An error occurred during login. Please try again.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred during login. Please try again later.'
+                    });
                 });
         }
-
 
         function validateEmail() {
             const emailInput = document.getElementById('email');
@@ -113,6 +139,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>

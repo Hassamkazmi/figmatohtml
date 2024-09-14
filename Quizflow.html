@@ -7,6 +7,8 @@
     <title>Important Message</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         select {
             background-color: rgba(255, 255, 255, 0.2);
@@ -25,7 +27,6 @@
 </head>
 
 <body>
-
     <div class="container quiz-css" id="step1">
         <div class="">
             <div class="logo signup section">
@@ -46,7 +47,7 @@
             <div class="heading-main Disqualification">
                 <div class="image-flex">
                     <div class="new-css-res">
-                        <h3 id="tries-left">5 try left</h3> <!-- Updated ID for tracking tries -->
+                        <h3 id="try-left">5 try left</h3>
                     </div>
                     <img class="song-play" src="./Assets/Play@2x.png" alt="" id="play-button" />
                     <img class="song-notes" src="./Assets/Song notes.png" alt="" />
@@ -69,14 +70,11 @@
                             <option value="">Choose genre from here</option>
                         </select>
 
-                        <button type="submit" id="submit-button">Submit</button>
+                        <button type="submit" id="submit-button" disabled>Submit</button>
                     </form>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <!-- Add an audio element to play the song -->
@@ -104,8 +102,7 @@
                 "Year of Release": 1977,
                 "Genre": "Disco",
                 "File Path": "./Assets/Music snippets_ 1st 10 to developer/It's Ecstasy When You Lay Down Next to Me.mp3"
-            }
-            ,
+            },
             {
                 "Song Name": "I Got to Have Your Love",
                 "Artist Name": "Fantastic Four",
@@ -158,10 +155,10 @@
         ];
 
         let currentSong = null;
-        let triesLeft = 5; // Initialize tries left to 5
-        let totalScore = 0; // Initialize the total score (125 total, 25 per correct answer)
+        let tryLeft = 5; // Initialize try left to 5
+        let totalScore = 0; // Initialize the total score
+        let isPlaying = false; // Flag to track the play state
 
-        // Populate Year of Release dropdown with specific years
         const yearDropdown = document.getElementById('release-year');
         const years = [1977, 1978, 1987, 1988];
         years.forEach(year => {
@@ -171,9 +168,8 @@
             yearDropdown.appendChild(yearOption);
         });
 
-        // Populate Genre of Song dropdown with options
         const genreDropdown = document.getElementById('genre');
-        const genres = ["Disco", "Pop", "Rock", "Jazz"]; // You can add more genres here
+        const genres = ["Disco", "Pop", "Rock", "Jazz"];
         genres.forEach(genre => {
             const genreOption = document.createElement('option');
             genreOption.value = genre;
@@ -181,31 +177,60 @@
             genreDropdown.appendChild(genreOption);
         });
 
-        // Get form elements
         const songNameInput = document.getElementById('song-name');
         const artistNameInput = document.getElementById('artist-name');
         const releaseYearSelect = document.getElementById('release-year');
         const genreSelect = document.getElementById('genre');
         const submitButton = document.getElementById('submit-button');
-        const triesLeftDisplay = document.getElementById('tries-left');
+        const tryLeftDisplay = document.getElementById('try-left');
         const playButton = document.getElementById('play-button');
         const audioPlayer = document.getElementById('audio-player');
 
-        let isPlaying = false; // Flag to track the play state
-
-        // Function to play a random song
         function playRandomSong() {
-            currentSong = songs[Math.floor(Math.random() * songs.length)];
-            audioPlayer.src = currentSong['File Path'];
-            audioPlayer.play();
-            playButton.src = './Assets/Vector.png'; // Change to pause button
-            isPlaying = true;
+            if (tryLeft > 0) { // Ensure tries are left before playing
+                currentSong = songs[Math.floor(Math.random() * songs.length)];
+                audioPlayer.src = currentSong['File Path'];
+                audioPlayer.play();
+                playButton.src = './Assets/Vector.png'; // Change to pause button
+                isPlaying = true;
+                tryLeft--; // Deduct one try when the song is played
+                tryLeftDisplay.textContent = `${tryLeft} try left`;
+
+                // Disable play button if tries reach 0
+                if (tryLeft === 0) {
+                    playButton.disabled = true; // Disable play button
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'No Tries Left',
+                        text: 'You cannot play the song again.',
+                    });
+                }
+            } else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'No Tries Left',
+                    text: 'You cannot play the song. All tries are used up.',
+                });
+            }
         }
 
-        // Initially disable the submit button
-        submitButton.disabled = true;
+        // Play button click event listener
+        playButton.addEventListener('click', () => {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playButton.src = './Assets/Play@2x.png'; // Change to play button
+                isPlaying = false;
+            } else {
+                playRandomSong(); // Call the function to play a random song
+            }
+        });
 
-        // Function to check if all fields have data
+        // Reset the play button icon when the song ends
+        audioPlayer.addEventListener('ended', () => {
+            playButton.src = './Assets/Play@2x.png';
+            isPlaying = false;
+        });
+
         function checkFormValidity() {
             if (
                 songNameInput.value.trim() !== '' &&
@@ -219,78 +244,36 @@
             }
         }
 
-        // Add event listeners to form inputs and select elements
         songNameInput.addEventListener('input', checkFormValidity);
         artistNameInput.addEventListener('input', checkFormValidity);
         releaseYearSelect.addEventListener('change', checkFormValidity);
         genreSelect.addEventListener('change', checkFormValidity);
 
-        // Play a random song when the play button is clicked
-        playButton.addEventListener('click', () => {
-            if (isPlaying) {
-                audioPlayer.pause();
-                playButton.src = './Assets/Play@2x.png';
-                isPlaying = false;
-            } else {
-                playRandomSong();
-            }
-        });
-
-        // Reset the button to Play@2x.png when the song ends
-        audioPlayer.addEventListener('ended', () => {
-            playButton.src = './Assets/Play@2x.png';
-            isPlaying = false;
-        });
-
-        // Form submit handler
         const form = document.querySelector('.song-form');
         form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent form from submitting
+            e.preventDefault(); // Prevent form submission
 
-            const isCorrect = (
-                songNameInput.value.trim().toLowerCase() === currentSong['Song Name'].toLowerCase() &&
-                artistNameInput.value.trim().toLowerCase() === currentSong['Artist Name'].toLowerCase() &&
-                releaseYearSelect.value == currentSong['Year of Release'] &&
-                genreSelect.value === currentSong['Genre']
-            );
+            // Reset score for the current submission
+            totalScore = 0;
 
-            if (isCorrect) {
-                alert('Success! You guessed the correct song details.');
-                totalScore += 25; // Add 25 points for correct answer
-                triesLeft--;
-                if (triesLeft === 0) {
-                    alert('Game Over!');
-                    window.location.href = `ResultCard.html?totalScore=${totalScore}`;
-
-                }
-            } else {
-                alert('Incorrect. Please try again.');
-                triesLeft--; // Decrease tries by 1
-                if (triesLeft === 0) {
-                    alert('Game Over!');
-                    window.location.href = `ResultCard.html?totalScore=${totalScore}`;
-
-                }
+            // Check each input against the current song data and add 25 points for each correct answer
+            if (songNameInput.value.trim().toLowerCase() === currentSong['Song Name'].toLowerCase()) {
+                totalScore += 25;
+            }
+            if (artistNameInput.value.trim().toLowerCase() === currentSong['Artist Name'].toLowerCase()) {
+                totalScore += 25;
+            }
+            if (releaseYearSelect.value == currentSong['Year of Release']) {
+                totalScore += 25;
+            }
+            if (genreSelect.value === currentSong['Genre']) {
+                totalScore += 25;
             }
 
-            // Update the "tries left" display
-            triesLeftDisplay.textContent = `${triesLeft} try left`;
-
-            // Check if the user has completed 4 correct answers
-            if (totalScore >= 100) {
-                localStorage.setItem('totalScore', totalScore); // Save score to localStorage
-                window.location.href = 'results.html'; // Redirect to results page
-            }
-
-            // Play a new song after submission
-            playRandomSong();
-
-            // Reset form fields
-            form.reset();
-            checkFormValidity(); // Disable submit button again
+            // Immediately go to the result page with the total score
+            window.location.href = `ResultCard.html?totalScore=${totalScore}`; // Redirect to results page with the score
         });
     </script>
-
 </body>
 
 </html>

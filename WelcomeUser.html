@@ -1,4 +1,3 @@
-<!-- Welcome Page -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,16 +7,6 @@
     <title>Welcome Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
-    <script>
-        window.onload = function () {
-            const storedUser = JSON.parse(localStorage.getItem('user'));
-            if (storedUser && storedUser.username) {
-                document.getElementById('username').innerText = storedUser.username;
-            } else {
-                document.getElementById('username').innerText = 'Guest';
-            }
-        };
-    </script>
 </head>
 
 <body>
@@ -32,7 +21,7 @@
         <hr />
         <div class="heading-main new">
             <h1>Welcome Back!</h1>
-            <p id="username"></p>
+            <p id="username">Fetching username...</p>
         </div>
         <div id="lottie-container"></div>
         <div class="">
@@ -41,6 +30,7 @@
     </div>
 
     <script>
+        // Load the Lottie animation
         lottie.loadAnimation({
             container: document.getElementById('lottie-container'),
             renderer: 'svg',
@@ -49,6 +39,47 @@
             path: 'https://lottie.host/e7102ad6-bb72-457a-be12-9df3fc72ac11/6ykWMFuffs.json'
         });
 
+        // Fetch user details using the token
+        function fetchUserDetails() {
+            const token = localStorage.getItem('authToken');
+
+            if (!token) {
+                // If no token is found, redirect to sign-in page
+                window.location.href = 'SignIn.html';
+                return;
+            }
+
+            // API endpoint for fetching user details
+            const apiEndpoint = 'https://danbackend-64ik.vercel.app/api/v1/me';
+
+            fetch(apiEndpoint, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // token from localStorage
+                }
+            })
+
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Display the username
+                        document.getElementById('username').textContent = `Hello, ${data.user.name}`;
+                    } else {
+                        // If there's an issue fetching user details, handle the error
+                        document.getElementById('username').textContent = '';
+                        console.error(data.message || 'Failed to fetch user data');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('username').textContent = 'Error loading user data';
+                });
+        }
+
+        // Fetch user details when the page loads
+        fetchUserDetails();
+
+        // Redirect to another page after 4 seconds
         setTimeout(function () {
             window.location.href = 'important-message.html';
         }, 4000);
