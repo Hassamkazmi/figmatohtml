@@ -81,6 +81,7 @@
     <audio id="audio-player"></audio>
 
     <script>
+
         const songs = [
             {
                 "Song Name": "Block Party",
@@ -154,28 +155,10 @@
             }
         ];
 
-        let currentSong = null;
-        let tryLeft = 5; // Initialize try left to 5
+        let currentSong = null;  // This holds the song that is locked for the current attempt
+        let tryLeft = 5; // Initialize tries left to 5
         let totalScore = 0; // Initialize the total score
         let isPlaying = false; // Flag to track the play state
-
-        const yearDropdown = document.getElementById('release-year');
-        const years = [1977, 1978, 1987, 1988];
-        years.forEach(year => {
-            const yearOption = document.createElement('option');
-            yearOption.value = year;
-            yearOption.text = year;
-            yearDropdown.appendChild(yearOption);
-        });
-
-        const genreDropdown = document.getElementById('genre');
-        const genres = ["Disco", "Pop", "Rock", "Jazz"];
-        genres.forEach(genre => {
-            const genreOption = document.createElement('option');
-            genreOption.value = genre;
-            genreOption.text = genre;
-            genreDropdown.appendChild(genreOption);
-        });
 
         const songNameInput = document.getElementById('song-name');
         const artistNameInput = document.getElementById('artist-name');
@@ -186,29 +169,44 @@
         const playButton = document.getElementById('play-button');
         const audioPlayer = document.getElementById('audio-player');
 
-        function playRandomSong() {
-            if (tryLeft > 0) { // Ensure tries are left before playing
-                currentSong = songs[Math.floor(Math.random() * songs.length)];
-                audioPlayer.src = currentSong['File Path'];
-                audioPlayer.play();
-                playButton.src = './Assets/Vector.png'; // Change to pause button
-                isPlaying = true;
-                tryLeft--; // Deduct one try when the song is played
-                tryLeftDisplay.textContent = `${tryLeft} try left`;
+        // Function to reset the game state after a form submission
+        function resetGame() {
+            tryLeft = 5;  // Reset tries left to 5 after submission
+            tryLeftDisplay.textContent = `${tryLeft} left`;  // Update the display
+            playButton.disabled = false;  // Re-enable the play button for the next attempt
+            currentSong = null;  // Clear the current song, so a new one will be chosen next
+            Swal.fire({
+                icon: 'success',
+                title: 'Submitted!',
+                text: 'A new song will be selected for your next attempt.',
+            });
+        }
 
-                // Disable play button if tries reach 0
+        // Function to play the same song for multiple tries
+        function playSameSong() {
+            if (tryLeft > 0) {
+                if (!currentSong) {  // If no song is selected, select a random song
+                    currentSong = songs[Math.floor(Math.random() * songs.length)];
+                }
+                audioPlayer.src = currentSong['File Path'];  // Use the selected song
+                audioPlayer.play();
+                playButton.src = './Assets/Vector.png';  // Change to pause button
+                isPlaying = true;
+                tryLeft--;  // Deduct one try when the song is played
+                tryLeftDisplay.textContent = `${tryLeft} left`;
+
                 if (tryLeft === 0) {
-                    playButton.disabled = true; // Disable play button
+                    playButton.disabled = true;  // Disable play button if no tries are left
                     Swal.fire({
                         icon: 'info',
-                        title: 'No Tries Left',
-                        text: 'You cannot play the song again.',
+                        title: 'No Try Left',
+                        text: 'You cannot play the song again for this attempt.',
                     });
                 }
             } else {
                 Swal.fire({
                     icon: 'info',
-                    title: 'No Tries Left',
+                    title: 'No Try Left',
                     text: 'You cannot play the song. All tries are used up.',
                 });
             }
@@ -218,10 +216,10 @@
         playButton.addEventListener('click', () => {
             if (isPlaying) {
                 audioPlayer.pause();
-                playButton.src = './Assets/Play@2x.png'; // Change to play button
+                playButton.src = './Assets/Play@2x.png';  // Change back to play button
                 isPlaying = false;
             } else {
-                playRandomSong(); // Call the function to play a random song
+                playSameSong();  // Call the function to play the same song
             }
         });
 
@@ -231,6 +229,7 @@
             isPlaying = false;
         });
 
+        // Form validation check
         function checkFormValidity() {
             if (
                 songNameInput.value.trim() !== '' &&
@@ -244,14 +243,16 @@
             }
         }
 
+        // Add event listeners for form validation
         songNameInput.addEventListener('input', checkFormValidity);
         artistNameInput.addEventListener('input', checkFormValidity);
         releaseYearSelect.addEventListener('change', checkFormValidity);
         genreSelect.addEventListener('change', checkFormValidity);
 
+        // Form submission event listener
         const form = document.querySelector('.song-form');
         form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault();  // Prevent form submission
 
             // Reset score for the current submission
             totalScore = 0;
@@ -270,10 +271,14 @@
                 totalScore += 25;
             }
 
-            // Immediately go to the result page with the total score
-            window.location.href = `ResultCard.html?totalScore=${totalScore}`; // Redirect to results page with the score
+            // Redirect to the results page with the total score
+            window.location.href = `ResultCard.html?totalScore=${totalScore}`;
+
+            // After form submission, reset the game
+            resetGame();  // Reset the game state for the next attempt
         });
     </script>
+
 </body>
 
 </html>
