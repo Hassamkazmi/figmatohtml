@@ -81,7 +81,14 @@
     <audio id="audio-player"></audio>
 
     <script>
+        const volumeControl = document.getElementById('volume');
+        const audioPlayer = document.getElementById('audio-player');
 
+        audioPlayer.volume = volumeControl.value / 100;
+
+        volumeControl.addEventListener('input', function () {
+            audioPlayer.volume = this.value / 100;  // Set volume based on range input value (0 to 1)
+        });
         const songs = [
             {
                 "Song Name": "Block Party",
@@ -167,7 +174,6 @@
         const submitButton = document.getElementById('submit-button');
         const tryLeftDisplay = document.getElementById('try-left');
         const playButton = document.getElementById('play-button');
-        const audioPlayer = document.getElementById('audio-player');
 
         // Function to reset the game state after a form submission
         function resetGame() {
