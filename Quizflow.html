@@ -162,6 +162,8 @@
             }
         ];
 
+
+
         let currentSong = null;  // This holds the song that is locked for the current attempt
         let tryLeft = 5; // Initialize tries left to 5
         let totalScore = 0; // Initialize the total score
@@ -282,6 +284,47 @@
 
             // After form submission, reset the game
             resetGame();  // Reset the game state for the next attempt
+        });
+
+        const defaultYears = [1976, 1977, 1978, 1979]; // Example of default years
+        const defaultGenres = ["Disco", "Funk", "Pop", "Rock"]; // Example of default genres
+
+        // Function to get unique values from an array
+        function getUniqueValues(data, key) {
+            return [...new Set(data.map(item => item[key]))]; // Extracts unique values for the given key
+        }
+
+        // Function to ensure exactly 4 options in the select element
+        function ensureFourOptions(optionsArray, defaultOptions) {
+            const uniqueOptions = [...new Set(optionsArray)]; // Ensure uniqueness
+            if (uniqueOptions.length >= 4) {
+                return uniqueOptions.slice(0, 4); // Limit to 4 if more than 4
+            } else {
+                // Add default options to make up the difference
+                const missingOptions = defaultOptions.filter(opt => !uniqueOptions.includes(opt));
+                return [...uniqueOptions, ...missingOptions].slice(0, 4); // Ensure exactly 4 options
+            }
+        }
+
+        // Get the 'Year of Release' and 'Genre' select elements
+        const yearSelect = document.getElementById('release-year');
+
+        // Populate the 'Year of Release' select options
+        const years = ensureFourOptions(getUniqueValues(songs, 'Year of Release'), defaultYears);
+        years.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
+
+        // Populate the 'Genre' select options
+        const genres = ensureFourOptions(getUniqueValues(songs, 'Genre'), defaultGenres);
+        genres.forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre;
+            option.textContent = genre;
+            genreSelect.appendChild(option);
         });
     </script>
 
