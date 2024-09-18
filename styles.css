@@ -484,9 +484,10 @@ button.submitform.point {
   position: absolute;
   right: 37%;
   top: 34%;
-  left: 57%;
+  left: 55%;
   background: #3a6b21 !important;
-  border-radius: 5px;
+  border-radius: 15px;
+  padding: 9px 15px;
 }
 .heading-main.Disqualification {
   width: 70%;
