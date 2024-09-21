@@ -512,6 +512,30 @@ button.submitform.point {
     margin: 20vh auto;
     padding: 10px;
   }
+  .logo.signup.section {
+    display: block;
+    margin-bottom: 65px;
+  }
+  .container.quiz-css {
+    margin-top: 5vw;
+  }
+  .new-css-res h3 {
+    position: absolute;
+    right: 15%;
+    top: 25%;
+    left: 60%;
+    background: #3a6b21 !important;
+    border-radius: 15px;
+    padding: 8px 10px;
+  }
+  .btn-main {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
   .social-button {
     padding-left: 10%;
@@ -529,17 +553,11 @@ button.submitform.point {
     text-align: center;
     color: white;
   }
-  .btn-main {
-    width: 85%;
-    margin: auto;
-    padding-bottom: 10%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+
   .logo img {
-    width: 100px;
+    width: 80px;
     margin-bottom: 0px;
+    height: 60px;
   }
 
   .logo.signup span h2 {
@@ -563,12 +581,23 @@ button.submitform.point {
   }
 
   .heading-main.Disqualification {
-    width: 90%;
+    width: 100%;
     margin: auto;
+  }
+  .heading-main {
+    padding: 5px;
   }
   .heading-main > h1 {
     font-size: 18px;
     line-height: 5px;
     font-weight: 300;
+  }
+  select {
+    width: 100%; /* Default width for select inputs */
+    max-width: 300px; /* Maximum width for larger screens */
+  }
+  button.submitform.point {
+    width: 40%;
+    margin-bottom: 2rem;
   }
 }
