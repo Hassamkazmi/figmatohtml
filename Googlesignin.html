@@ -86,10 +86,10 @@
 
         const facebookProvider = new FacebookAuthProvider();
         const googleProvider = new GoogleAuthProvider();
-
         document.getElementById('facebook-login').addEventListener('click', () => {
             signInWithPopup(auth, facebookProvider)
                 .then((result) => {
+                    console.log(result);  // Add this line for debugging
                     const user = result.user;
                     localStorage.setItem('user', JSON.stringify({ username: user.displayName }));
                     window.location.href = 'WelcomeUser.html';
@@ -98,6 +98,8 @@
                     console.error(error.message);
                 });
         });
+
+
 
         document.getElementById('google-login').addEventListener('click', () => {
             signInWithPopup(auth, googleProvider)
