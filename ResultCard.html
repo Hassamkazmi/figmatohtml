@@ -33,15 +33,20 @@
             } else if (totalScore === 25) {
                 heading.textContent = "Better Luck Next Time!";
                 songPlayImg.src = "./Assets/Frame 45.png"; // Change the image
-                answers.textContent = "1 of 5 answers";
+                answers.textContent = "1 of 4 answers";
             } else if (totalScore === 50) {
                 heading.textContent = "Better Luck Next Time!";
                 songPlayImg.src = "./Assets/Frame 45.png"; // Change the image
-                answers.textContent = "2 of 5 answers";
-            } else if (totalScore === 125) {
+                answers.textContent = "2 of 4 answers";
+            } else if (totalScore === 75) {
+                heading.textContent = "Better Luck Next Time!";
+                songPlayImg.src = "./Assets/Frame 45.png"; // Change the image
+                answers.textContent = "3 of 4 answers";
+            }
+            else if (totalScore === 100) {
                 heading.textContent = "Congratulations! You Won!";
                 songPlayImg.src = "./Assets/Group 1.png"; // Use the same or different image
-                answers.textContent = "5 of 5 answers";
+                answers.textContent = "4 of 4 answers";
             }
         };
 
@@ -73,8 +78,8 @@
             <img class="song-play" src="./Assets/Group 1.png" alt="" />
             <div class="Disqualification">
                 <h1>Better Luck Next Time!</h1>
-                <p class="answerscss">Your <span class="color-css-answer">0 of 5 answers</span> were correct</p>
-                <p class="answerscss">Try next time</p>
+                <p class="answerscss">Your <span class="color-css-answer">0 of 4 answers</span> were correct</p>
+                <!-- <p class="answerscss">Try next time</p> -->
             </div>
             <button type="submit" class="submitform point"><span id="total-score"></span> points</button>
             <div class="btn-main">
