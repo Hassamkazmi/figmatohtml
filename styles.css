@@ -493,7 +493,24 @@ button.submitform.point {
   width: 70%;
   margin: auto;
 }
-/* Tablet (iPad) Styles */
+@media (max-width: 1920px) {
+}
+@media (max-width: 1600px) {
+  .new-css-res h3 {
+    top: 26%;
+  }
+}
+@media (max-width: 1540px) {
+  .new-css-res h3 {
+    top: 24%;
+  }
+}
+@media (max-width: 1440px) {
+  .new-css-res h3 {
+    top: 21%;
+  }
+}
+
 @media (max-width: 1024px) {
   .login-box {
     max-width: 400px;
