@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
 
     <style>
         select {
@@ -50,7 +51,8 @@
                         <h3 id="try-left">5 left</h3>
                     </div>
                     <img class="song-play" src="./Assets/Play@2x.png" alt="" id="play-button" />
-                    <img class="song-notes" src="./Assets/Song notes.png" alt="" />
+                    <img id="song-notes-image" class="song-notes" src="./Assets/Song notes.png" alt="song notes" />
+
                 </div>
                 <div class="form-container">
                     <form class="song-form">
@@ -81,6 +83,10 @@
     <audio id="audio-player"></audio>
 
     <script>
+
+
+
+
         const volumeControl = document.getElementById('volume');
         const audioPlayer = document.getElementById('audio-player');
 
@@ -89,6 +95,10 @@
         volumeControl.addEventListener('input', function () {
             audioPlayer.volume = this.value / 100;  // Set volume based on range input value (0 to 1)
         });
+
+
+
+
         const songs = [
             {
                 "Song Name": "Block Party",
@@ -220,24 +230,54 @@
             }
         }
 
-        // Play button click event listener
+        const lottieContainer = document.createElement('div');
+        lottieContainer.id = 'lottie-container';
+        lottieContainer.style.display = 'none';  // Initially hidden
+        document.querySelector('.image-flex').appendChild(lottieContainer);
+
+        // Load the Lottie animation
+        lottie.loadAnimation({
+            container: lottieContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: './Assets/music.json'  // Replace with your Lottie animation path
+        });
+
+        // Function to toggle between song notes image and Lottie animation
+        function toggleSongVisual(isPlaying) {
+            const songNotesImage = document.getElementById('song-notes-image');
+
+            if (isPlaying) {
+                songNotesImage.style.display = 'none';  // Hide song notes image
+                lottieContainer.style.display = 'block';  // Show Lottie animation
+                lottie.play();  // Start the Lottie animation
+            } else {
+                songNotesImage.style.display = 'block';  // Show song notes image
+                lottieContainer.style.display = 'none';  // Hide Lottie animation
+                lottie.stop();  // Stop the Lottie animation
+            }
+        }
+
+        // Modify play button event listener to toggle visuals
         playButton.addEventListener('click', () => {
             if (isPlaying) {
                 audioPlayer.pause();
                 playButton.src = './Assets/Play@2x.png';  // Change back to play button
+                toggleSongVisual(false);  // Show song notes image
                 isPlaying = false;
             } else {
                 playSameSong();  // Call the function to play the same song
+                toggleSongVisual(true);  // Show Lottie animation
             }
         });
 
         // Reset the play button icon when the song ends
         audioPlayer.addEventListener('ended', () => {
             playButton.src = './Assets/Play@2x.png';
+            toggleSongVisual(false);  // Show song notes image
             isPlaying = false;
         });
-
-        // Form validation check
         function checkFormValidity() {
             if (
                 songNameInput.value.trim() !== '' &&
@@ -326,6 +366,8 @@
             option.textContent = genre;
             genreSelect.appendChild(option);
         });
+
+
     </script>
 
 </body>

@@ -485,9 +485,14 @@ button.submitform.point {
   right: 37%;
   top: 34%;
   left: 55%;
-  background: #3a6b21 !important;
+  background: #dae99d !important;
   border-radius: 15px;
   padding: 9px 15px;
+  color: #000;
+}
+div#lottie-container {
+  height: 40px;
+  width: 100%;
 }
 .heading-main.Disqualification {
   width: 70%;
