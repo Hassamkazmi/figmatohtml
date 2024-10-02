@@ -79,6 +79,7 @@
                 .then(data => {
                     if (data.success) {
                         localStorage.setItem('authToken', data.token);
+                        localStorage.setItem('username', email);
 
                         // Show success alert
                         Swal.fire({

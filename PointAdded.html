@@ -14,6 +14,10 @@
             const urlParams = new URLSearchParams(window.location.search);
             const totalScore = parseInt(urlParams.get('totalScore')) || 0;
 
+            // Get email from local storage and extract username
+            const email = localStorage.getItem('username') || 'unknown@example.com';
+            const username = email.split('@')[0]; // Extract the part before '@'
+
             // Set the score in the #total-score span
             const totalScoreElement = document.getElementById('total-score');
             const totalScoreElement1 = document.getElementById('total-score1');
@@ -26,19 +30,19 @@
 
             // Logic based on totalScore
             if (totalScore === 0) {
-                heading.textContent = "Better Luck Next Time!";
+                heading.textContent = ` ${username}!`;
                 songPlayImg.src = "./Assets/Frame 453.png"; // Change the image
                 answers.textContent = "0 of 5 answers";
             } else if (totalScore === 25) {
-                heading.textContent = "Better Luck Next Time!";
+                heading.textContent = ` ${username}!`;
                 songPlayImg.src = "./Assets/Frame 45.png"; // Change the image
                 answers.textContent = "1 of 5 answers";
             } else if (totalScore === 50) {
-                heading.textContent = "Better Luck Next Time!";
+                heading.textContent = ` ${username}!`;
                 songPlayImg.src = "./Assets/Frame 45.png"; // Change the image
                 answers.textContent = "2 of 5 answers";
             } else if (totalScore === 125) {
-                heading.textContent = "Congratulations! You Won!";
+                heading.textContent = `Congratulations, ${username}! You Won!`;
                 songPlayImg.src = "./Assets/Group 1.png"; // Use the same or different image
                 answers.textContent = "5 of 5 answers";
             }
@@ -47,6 +51,7 @@
         function nextStep() {
             window.location.href = `ExitPage.html`;
         }
+
     </script>
 </head>
 
