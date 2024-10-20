@@ -9,6 +9,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
 
     <script>
+        document.onkeydown = function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                e.preventDefault();
+            }
+        };
+        document.addEventListener('contextmenu', event => event.preventDefault());
         window.onload = function () {
             // Get the totalScore from the URL query params
             const urlParams = new URLSearchParams(window.location.search);

@@ -30,6 +30,12 @@
     </div>
 
     <script>
+        document.onkeydown = function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                e.preventDefault();
+            }
+        };
+        document.addEventListener('contextmenu', event => event.preventDefault());
         // Load the Lottie animation
         lottie.loadAnimation({
             container: document.getElementById('lottie-container'),

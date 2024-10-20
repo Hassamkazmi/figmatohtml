@@ -9,6 +9,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
 
     <script>
+
+        document.onkeydown = function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                e.preventDefault();
+            }
+        };
+        document.addEventListener('contextmenu', event => event.preventDefault());
         let totalScore = 0; // Declare totalScore here so it is accessible globally
 
         // Function to fetch user data from the /me API
