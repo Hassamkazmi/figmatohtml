@@ -86,28 +86,39 @@
     const googleProvider = new GoogleAuthProvider();
 
     document.getElementById('facebook-login').addEventListener('click', () => {
-        signInWithPopup(auth, facebookProvider)
-            .then((result) => {
-                const user = result.user;
-                localStorage.setItem('user', JSON.stringify({ username: user.displayName }));
-                window.location.href = 'WelcomeUser.html';
-            })
-            .catch((error) => {
-                console.error(error.message);
-            });
-    });
+    signInWithPopup(auth, facebookProvider)
+        .then((result) => {
+            const user = result.user;
+            console.log("User data from Facebook:", user); // Add this for debugging
 
-    document.getElementById('google-login').addEventListener('click', () => {
-        signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                const user = result.user;
+            if (user.displayName) {
                 localStorage.setItem('user', JSON.stringify({ username: user.displayName }));
                 window.location.href = 'WelcomeUser.html';
-            })
-            .catch((error) => {
-                console.error(error.message);
-            });
-    });
+            } else {
+                console.error("User data not available. Please check Facebook permissions.");
+                alert("Failed to retrieve user data. Please check your permissions.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error during Facebook sign-in:", error.message);
+            alert("Facebook sign-in failed. Please try again.");
+        });
+});
+
+document.getElementById('google-login').addEventListener('click', () => {
+    signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            const user = result.user;
+            localStorage.setItem('user', JSON.stringify({ username: user.displayName }));
+            window.location.href = 'WelcomeUser.html';
+        })
+        .catch((error) => {
+            console.error(error.message);
+            alert("Google sign-in failed. Please try again.");
+        });
+});
+
+
 </script>
 
 </html>
